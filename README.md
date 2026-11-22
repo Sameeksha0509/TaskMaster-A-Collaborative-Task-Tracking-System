@@ -45,7 +45,8 @@ All API routes except registration and login require authentication.
 | GET, PATCH | `/api/users/me` | Read or update the current profile |
 | POST, GET | `/api/projects` | Create a project or list your projects |
 | POST | `/api/projects/:projectId/members` | Add an existing user by email (owner only) |
-| GET, POST | `/api/tasks` or `/api/projects/:projectId/tasks` | List/search tasks or create a project task |
+| GET | `/api/tasks` | List, search, filter, sort, and paginate tasks |
+| POST | `/api/projects/:projectId/tasks` | Create a task within a project |
 | GET, PATCH, DELETE | `/api/tasks/:taskId` | Read, update, complete, or delete a task |
 | GET, POST | `/api/tasks/:taskId/comments` | List or add task comments |
 | GET, POST | `/api/tasks/:taskId/attachments` | List or upload task attachments |
@@ -57,7 +58,7 @@ All API routes except registration and login require authentication.
 
 Task statuses are `OPEN`, `IN_PROGRESS`, and `COMPLETED`. Task listing supports `projectId`, `assignedToMe`, `status`, `search`, `sortBy` (`dueDate`, `createdAt`, `title`, or `updatedAt`), `order` (`asc` or `desc`), `page`, and `limit` (maximum 100). Search matches title and description. By default, the list includes tasks assigned to or created by the current user, within projects they belong to.
 
-Project members can create and collaborate on tasks. Only project owners can add members; the invitee must have registered. Task assignees must already belong to the project. Task creators or project owners can delete tasks; attachment uploaders or project owners can delete attachments.
+Project members can create and collaborate on tasks. Only project owners can add members; the invitee must already be registered. Task assignees must already belong to the project. Task creators or project owners can delete tasks; attachment uploaders or project owners can delete attachments.
 
 Attachments use `multipart/form-data` with a `file` field. Allowed formats are JPEG, PNG, GIF, WebP, PDF, plain text, DOCX, and XLSX. The default maximum size is 10 MiB; change `MAX_UPLOAD_BYTES` to configure it. Files are stored with random names and only streamed after project-access checks.
 
