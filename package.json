@@ -1,0 +1,40 @@
+{
+  "name": "taskmaster-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Collaborative task tracking REST API",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "prisma generate && tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "test": "cross-env DATABASE_URL=file:../test.db JWT_SECRET=test-secret-that-is-long-enough-for-tests-123 prisma db push && cross-env DATABASE_URL=file:../test.db JWT_SECRET=test-secret-that-is-long-enough-for-tests-123 tsx --test tests/api.test.ts",
+    "test:watch": "cross-env DATABASE_URL=file:../test.db JWT_SECRET=test-secret-that-is-long-enough-for-tests-123 prisma db push && cross-env DATABASE_URL=file:../test.db JWT_SECRET=test-secret-that-is-long-enough-for-tests-123 tsx --test --watch tests/api.test.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^22.19.1",
+    "cross-env": "^7.0.3",
+    "prisma": "^5.22.0",
+    "supertest": "^7.1.4",
+    "@types/supertest": "^6.0.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
