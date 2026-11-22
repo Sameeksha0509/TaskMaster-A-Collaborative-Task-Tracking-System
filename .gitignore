@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+*.db
+*.db-journal
+uploads/
+coverage/
+
+# Local QA test files
+downloaded-attachment.txt
+large-attachment.txt
+qa-attachment.txt
+qa-downloaded.txt
+qa-invalid.exe
+qa-oversize.txt
+sample-attachment.txt
+sample-invalid.exe
